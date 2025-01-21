@@ -15,6 +15,7 @@ const Main = styled.main`
   padding: 4rem 4.8rem 6.4rem;
   overflow: scroll;
 `;
+
 const Container = styled.div`
   max-width: 120rem;
   margin: 0 auto;
@@ -28,12 +29,11 @@ function AppLayout() {
     <StyledAppLayout>
       <Header />
       <Sidebar />
-     <Main> <Container>
-        
-      
-      
-        <Outlet />
-      </Container></Main>
+      <Main>
+        <Container>
+          <Outlet />
+        </Container>
+      </Main>
     </StyledAppLayout>
   );
 }
