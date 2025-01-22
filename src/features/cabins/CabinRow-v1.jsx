@@ -8,6 +8,7 @@ import { useCreateCabin } from "./useCreateCabin";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
+import { cabinPropTypes } from "../../utils/cabinproptypes";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -116,5 +117,7 @@ function CabinRow({ cabin }) {
     </Table.Row>
   );
 }
-
+CabinRow.propTypes = {
+  cabin: cabinPropTypes,
+};
 export default CabinRow;
