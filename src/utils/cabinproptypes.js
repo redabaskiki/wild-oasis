@@ -9,3 +9,12 @@
    image: PropTypes.string.isRequired,
    description: PropTypes.string,
  }).isRequired;
+
+
+ export const FilterProps = PropTypes.shape({
+   filterField: PropTypes.string.isRequired,
+ options: PropTypes.shape({
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+ }).isRequired,
+ }).isRequired;
