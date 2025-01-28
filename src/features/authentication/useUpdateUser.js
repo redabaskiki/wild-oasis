@@ -14,4 +14,5 @@ export function useUpdateUser() {
     onError: (err) => toast.error(err.message),
   });
 
-  return { updateUser, isUpdating };} 
+  return { updateUser, isUpdating };
+}

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
@@ -93,11 +94,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow
-        label="Description for website"
-        disabled={isCreating}
-        error={errors?.description?.message}
-      >
+      <FormRow label="Description" error={errors?.description?.message}>
         <Textarea
           type="number"
           id="description"

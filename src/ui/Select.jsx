@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledSelect = styled.select`
@@ -14,6 +13,7 @@ const StyledSelect = styled.select`
   font-weight: 500;
   box-shadow: var(--shadow-sm);
 `;
+
 function Select({ options, value, onChange, ...props }) {
   return (
     <StyledSelect value={value} onChange={onChange} {...props}>
@@ -24,15 +24,6 @@ function Select({ options, value, onChange, ...props }) {
       ))}
     </StyledSelect>
   );
-}Select.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string.isRequired, // Value of the option
-      label: PropTypes.string.isRequired, // Display label of the option
-    })
-  ).isRequired,
-  value: PropTypes.string.isRequired, // Selected value
-  onChange: PropTypes.func.isRequired, // Function to handle value change
-};
+}
 
 export default Select;

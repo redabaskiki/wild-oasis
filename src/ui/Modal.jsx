@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
-import PropTypes from "prop-types";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -97,13 +96,5 @@ function Window({ children, name }) {
 
 Modal.Open = Open;
 Modal.Window = Window;
-Window.propTypes = {
-  children: PropTypes.node.isRequired, // Ensures children can be any valid React node and is required
-  name: PropTypes.string.isRequired, // Ensures name is a string and is required
-};
-
-Modal.propTypes = {
-  children: PropTypes.node.isRequired, // Ensures children can be any valid React node and is required
-};
 
 export default Modal;

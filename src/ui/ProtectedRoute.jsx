@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { useUser } from "../features/authentication/useUser";
 import Spinner from "./Spinner";
@@ -28,7 +26,7 @@ function ProtectedRoute({ children }) {
     [isAuthenticated, isLoading, navigate]
   );
 
-  // 3. While loading, show spinner
+  // 3. While loading, show a spinner
   if (isLoading)
     return (
       <FullPage>

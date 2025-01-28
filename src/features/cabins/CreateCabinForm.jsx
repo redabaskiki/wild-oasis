@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 
@@ -10,8 +11,6 @@ import FormRow from "../../ui/FormRow";
 
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
-import { cabinPropTypes } from "../../utils/cabinproptypes";
-import PropTypes from "prop-types";
 
 function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { isCreating, createCabin } = useCreateCabin();
@@ -31,7 +30,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 
     if (isEditSession)
       editCabin(
-        { newCabinData: { ...data, image }, id: editId },
+        { newcabinData: { ...data, image }, id: editId },
         {
           onSuccess: (data) => {
             reset();
@@ -116,10 +115,7 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow
-        label="Description for website"
-        error={errors?.description?.message}
-      >
+      <FormRow label="Description" error={errors?.description?.message}>
         <Textarea
           type="number"
           id="description"
@@ -157,8 +153,5 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
     </Form>
   );
 }
-CreateCabinForm.propTypes = {
-  cabinToEdit: cabinPropTypes, // Reuse cabinPropTypes
-    onCloseModal: PropTypes.func.isRequired,
-}; 
+
 export default CreateCabinForm;

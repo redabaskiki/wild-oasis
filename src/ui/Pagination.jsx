@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
@@ -69,7 +67,7 @@ function Pagination({ count }) {
 
   const pageCount = Math.ceil(count / PAGE_SIZE);
 
-  function nexPage() {
+  function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;
 
     searchParams.set("page", next);
@@ -101,7 +99,7 @@ function Pagination({ count }) {
         </PaginationButton>
 
         <PaginationButton
-          onClick={nexPage}
+          onClick={nextPage}
           disabled={currentPage === pageCount}
         >
           <span>Next</span>

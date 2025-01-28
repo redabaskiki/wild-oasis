@@ -1,6 +1,5 @@
 import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { FilterProps } from "../utils/cabinproptypes";
 
 const StyledFilter = styled.div`
   border: 1px solid var(--color-grey-100);
@@ -35,28 +34,26 @@ const FilterButton = styled.button`
     color: var(--color-brand-50);
   }
 `;
- 
-function Filter({ filterField,options}) {
-  const [ searchParams, setSearchParams]=useSearchParams();
+
+function Filter({ filterField, options }) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get(filterField) || options.at(0).value;
-  function handleClick(value){
-    searchParams.set("discount",value)
-    setSearchParams(searchParams)
+
+  function handleClick(value) {
+    searchParams.set(filterField, value);
+    if (searchParams.get("page")) searchParams.set("page", 1);
+
+    setSearchParams(searchParams);
   }
+
   return (
     <StyledFilter>
-      {/* <FilterButton onClick={() => handleClick("all")}>ALL</FilterButton>
-      <FilterButton onClick={() => handleClick("Nodiscount")}>
-        No Discount{" "}
-      </FilterButton>
-      <FilterButton onClick={() => handleClick("discount")}>
-        With Discount
-      </FilterButton> */}
       {options.map((option) => (
         <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}
           active={option.value === currentFilter}
+          disabled={option.value === currentFilter}
         >
           {option.label}
         </FilterButton>
@@ -64,8 +61,5 @@ function Filter({ filterField,options}) {
     </StyledFilter>
   );
 }
-Filter.propTypes = {
-  filterField: FilterProps,
-  options: FilterProps,
-};
-export default Filter
+
+export default Filter;

@@ -1,14 +1,18 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 import CreateCabinForm from "./CreateCabinForm";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { formatCurrency } from "../../utils/helpers";
-import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+
+import { HiSquare2Stack, HiPencil, HiTrash } from "react-icons/hi2";
 import { useCreateCabin } from "./useCreateCabin";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
-import { cabinPropTypes } from "../../utils/cabinproptypes";
+import Menus from "../../ui/Menus";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -113,11 +117,21 @@ function CabinRow({ cabin }) {
             />
           </Modal.Window>
         </Modal>
+
+        <Menus.Menu>
+          <Menus.Toggle id={cabinId} />
+
+          <Menus.List id={cabinId}>
+            <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+              Duplicate
+            </Menus.Button>
+            <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+            <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+          </Menus.List>
+        </Menus.Menu>
       </div>
     </Table.Row>
   );
 }
-CabinRow.propTypes = {
-  cabin: cabinPropTypes,
-};
+
 export default CabinRow;
