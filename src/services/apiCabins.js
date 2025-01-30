@@ -22,26 +22,25 @@ export async function createEditCabin(newCabin, id) {
     ? newCabin.image
     : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
 
-  // 1. Create cabin
+  const currentDate = new Date().toISOString(); // Add current date-time for created_at
+
+  // 1. Create/edit cabin
   let query = supabase.from("cabins");
 
   // A) CREATE
-  if (!id) query = query.insert([
-    { ...newCabin, image: imagePath, created_at: undefined },
-  ]);
+  if (!id)
+    query = query.insert([
+      { ...newCabin, image: imagePath, created_at: currentDate },
+    ]); // Add created_at here
 
   // B) EDIT
-  if (id)
-    query = query
-      .update({ ...newCabin, image: imagePath })
-      .eq("id", id)
-      .select();
+  if (id) query = query.update({ ...newCabin, image: imagePath }).eq("id", id);
 
   const { data, error } = await query.select().single();
 
   if (error) {
     console.error(error);
-    throw new Error("Cabins could not be created");
+    throw new Error("Cabin could not be created");
   }
 
   // 2. Upload image
@@ -63,12 +62,13 @@ export async function createEditCabin(newCabin, id) {
   return data;
 }
 
+
 export async function deleteCabin(id) {
   const { data, error } = await supabase.from("cabins").delete().eq("id", id);
 
   if (error) {
     console.error(error);
-    throw new Error("Cabins could not be deleted");
+    throw new Error("Cabin could not be deleted");
   }
 
   return data;

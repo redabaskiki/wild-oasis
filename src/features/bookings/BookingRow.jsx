@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { format, isToday } from "date-fns";
 import {
@@ -48,8 +47,14 @@ const Amount = styled.div`
   font-weight: 500;
 `;
 
-function BookingRow({
-  booking: {
+function BookingRow({ booking }) { const navigate = useNavigate();
+  const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
+  console.log("Booking Data:", booking);
+
+  if (!booking) return null;
+
+  const {
     id: bookingId,
     created_at,
     startDate,
@@ -58,13 +63,28 @@ function BookingRow({
     numGuests,
     totalPrice,
     status,
-    guests: { fullName: guestName, email },
-    cabins: { name: cabinName },
-  },
-}) {
-  const navigate = useNavigate();
-  const { checkout, isCheckingOut } = useCheckout();
-  const { deleteBooking, isDeleting } = useDeleteBooking();
+    guests,
+    cabins,
+  } = booking;
+
+  console.log("Guests Data:", guests);
+  console.log("Cabins Data:", cabins);
+
+  const guestName = guests?.fullName || "Unknown Guest";
+  const email = guests?.email || "No Email";
+  const cabinName = cabins?.name || "Unknown Cabin";
+ 
+
+
+
+
+
+
+
+
+
+  
+ 
 
   const statusToTagName = {
     unconfirmed: "blue",
