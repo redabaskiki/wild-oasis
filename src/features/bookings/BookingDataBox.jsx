@@ -116,10 +116,15 @@ function BookingDataBox({ booking }) {
     hasBreakfast,
     observations,
     isPaid,
-    guests: { fullName: guestName, email, country, countryFlag, nationalID },
-    cabins: { name: cabinName },
+    guests ,
+    cabins ,
   } = booking;
-
+  const guestName = guests?.fullName || "Unknown Guest";
+  const country = guests?.country || "No Email";
+  const countryFlag = guests?.countryFlag || "No countryFlag";
+  const nationalID = guests?.nationalID || "No nationalID";
+  const email = guests?.email || "No Email";
+    const cabinName = cabins?.name || "Unknown Cabin";
   return (
     <StyledBookingDataBox>
       <Header>
